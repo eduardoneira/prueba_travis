@@ -1,5 +1,19 @@
-cmake_minimum_required(VERSION 2.8.7)
+cmake_minimum_required(VERSION 2.8)
 project (TestRocksdb)
+
+#Flags
+
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+	#set(warnings "-Wall -Wextra")
+endif()
+#set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${warnings}")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${warnings}")
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -std=c++11 -pthread -lrt") #tal vez incluir pthread como las demas, no hardcodeada
+
+# "-Wl,--as-needed" hace que solo se linkee con librerias que se usan en el ejecutable"
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,--as-needed -L/usr/lib")
+
 
 #For the source files:
 file(GLOB SOURCES "src/*.cpp")
@@ -32,4 +46,3 @@ include_directories(src)
 
 add_executable(machoTest ${SOURCES})
 target_link_libraries(machoTest RocksDB Zlib Snappy Bz2 )
-set(CMAKE_CXX_FLAGS " -std=c++11 -pthread -g -lrt" )

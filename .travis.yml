@@ -44,7 +44,6 @@ before_script:
   - ./unpack_rocksdb.sh
 
 script:
-  - cd build/
   - chmod +x build.sh 
   - ./build.sh
   - ./machoTest

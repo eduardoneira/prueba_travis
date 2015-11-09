@@ -9,7 +9,7 @@ endif()
 #set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${warnings}")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${warnings}")
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -std=c++11 -pthread -lrt") #tal vez incluir pthread como las demas, no hardcodeada
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -std=c++11 -pthread") #tal vez incluir pthread como las demas, no hardcodeada
 
 # "-Wl,--as-needed" hace que solo se linkee con librerias que se usan en el ejecutable"
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,--as-needed -L/usr/lib")
@@ -45,4 +45,4 @@ include_directories(include)
 include_directories(src)
 
 add_executable(machoTest ${SOURCES})
-target_link_libraries(machoTest RocksDB Zlib Snappy Bz2 )
+target_link_libraries(machoTest RocksDB Zlib Snappy Bz2 -lrt)

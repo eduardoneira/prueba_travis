@@ -38,7 +38,6 @@ before_install:
 install:
   - sudo apt-get install -qq g++-4.8
   - export CXX="g++-4.8"
-  - sudo update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-4.9 50
   - sudo pip install cpp-coveralls
 
 before_script:

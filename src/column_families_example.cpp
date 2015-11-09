@@ -11,29 +11,16 @@
 #include "rocksdb/db.h"
 #include "rocksdb/slice.h"
 #include "rocksdb/options.h"
-
+#include "func/funciones.h"
 
 using namespace rocksdb;
-std::string kDBPath = "rocksdb_column_families_example";
-
 
 int main(int argc, char** argv) {
-
-  // open DB
-  std::cout << "Empieza el ejemplo" << std::endl;
+  
   Options options;
-  options.create_if_missing = true;
   DB* db;
-  Status s = DB::Open(options, kDBPath, &db);
-
-  // create column family
-  ColumnFamilyHandle* cf;
-  s = db->CreateColumnFamily(ColumnFamilyOptions(), "new_cf", &cf);
-  assert(s.ok());
-
-  // close DB
-  delete cf;
-  delete db;
+  Status s;
+  openDB(options,db);
 
   // open DB with two column families
   std::vector<ColumnFamilyDescriptor> column_families;
@@ -72,6 +59,4 @@ int main(int argc, char** argv) {
   }
   delete db;
   std::cout << "Termina el ejemplo" << std::endl;
-
-  return 0;
 }

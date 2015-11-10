@@ -39,10 +39,17 @@ install:
   - sudo apt-get install -qq g++-4.8
   - export CXX="g++-4.8"
   - sudo pip install cpp-coveralls
+  # install latest LCOV (1.9 was failing for me) [1]
+  - wget http://ftp.de.debian.org/debian/pool/main/l/lcov/lcov_1.11.orig.tar.gz
+  - tar xf lcov_1.11.orig.tar.gz
+  - sudo make -C lcov-1.11/ install
+  # install lcov to coveralls conversion + upload tool
+  - gem install coveralls-lcov
 
 before_script:
   - chmod +x unpack_rocksdb.sh
   - ./unpack_rocksdb.sh
+  - lcov --directory . --zerocounters
 
 script:
   - chmod +x build.sh 

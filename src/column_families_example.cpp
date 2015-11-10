@@ -6,7 +6,6 @@
 #include <string>
 #include <vector>
 #include <iostream>
-#include <time.h>
 
 #include "rocksdb/db.h"
 #include "rocksdb/slice.h"
@@ -15,12 +14,25 @@
 
 using namespace rocksdb;
 
-int main(int argc, char** argv) {
-  
+std::string kDBPath = "/tmp/rocksdb_column_families_example";
+
+int main() {
+  imprimirCosas("Empieza test");
+  // open DB
   Options options;
+  options.create_if_missing = true;
   DB* db;
-  Status s;
-  openDB(options,db);
+  Status s = DB::Open(options, kDBPath, &db);
+  assert(s.ok());
+
+  // create column family
+  ColumnFamilyHandle* cf;
+  s = db->CreateColumnFamily(ColumnFamilyOptions(), "new_cf", &cf);
+  assert(s.ok());
+
+  // close DB
+  delete cf;
+  delete db;
 
   // open DB with two column families
   std::vector<ColumnFamilyDescriptor> column_families;
@@ -40,7 +52,7 @@ int main(int argc, char** argv) {
   std::string value;
   s = db->Get(ReadOptions(), handles[1], Slice("key"), &value);
   assert(s.ok());
-
+  imprimirCosas("voy por la mitad");
   // atomic write
   WriteBatch batch;
   batch.Put(handles[0], Slice("key2"), Slice("value2"));
@@ -58,5 +70,8 @@ int main(int argc, char** argv) {
     delete handle;
   }
   delete db;
-  std::cout << "Termina el ejemplo" << std::endl;
+
+  imprimirCosas("Termina test");
+ 
+   return 0;
 }

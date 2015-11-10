@@ -10,10 +10,13 @@
 #include "gmock/gmock.h"
 #include "funciones.h"
 
-TEST(DatabaseTest,crearDB){
-  Options options;
-  DB* db;
-  EXPECT_TRUE(openDB(options,db));
+TEST(funcTest,devTrue){
+  EXPECT_TRUE(imprimirCosas("hola"));
+
+}
+
+TEST(funcTest,devFalse){
+  EXPECT_FALSE(imprimirCosas(""));
 
 }
 

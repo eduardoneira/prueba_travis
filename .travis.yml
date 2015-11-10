@@ -48,6 +48,14 @@ script:
   - chmod +x build.sh 
   - ./build.sh
   - ./machoTest
+  - cd test
+  - ./build.sh
+  - ./test
+  - cd ../
+
+after_script:
+  - coveralls -i src -i test -r ./
+
 
 notifications:
   email: false

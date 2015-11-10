@@ -57,7 +57,7 @@ after_script:
   - lcov --directory . --capture --output-file coverage.info # capture coverage info
   - lcov --remove coverage.info 'test/*' '/usr/*' --output-file coverage.info # filter out system and test code
   - lcov --list coverage.info # debug before upload
-  - coveralls-lcov --repo-token "72DcnembQ3dax1v37KtzOtD88XFZ1XRx0" coverage.info # uploads to coveralls
+  - coveralls-lcov --repo-token 'yoK0wIjg3zeJ5fTVQdZr1fyG4fXltkZ7a' coverage.info # uploads to coveralls
 
 notifications:
   email: false

@@ -54,7 +54,7 @@ script:
   - cd ../
 
 after_script:
-  - coveralls -i src -i ./
+  - coveralls -i src -r ./
 
 
 notifications:

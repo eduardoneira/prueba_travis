@@ -9,11 +9,11 @@
 #include "gtest/gtest.h"
 #include "gmock/gmock.h"
 #include "funciones.h"
-
+/*
 TEST(funcTest,devTrue){
   EXPECT_TRUE(imprimirCosas("hola"));
 
-}
+}*/
 
 TEST(funcTest,devFalse){
   EXPECT_FALSE(imprimirCosas(""));

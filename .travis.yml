@@ -49,22 +49,15 @@ install:
 before_script:
   - chmod +x unpack_rocksdb.sh
   - ./unpack_rocksdb.sh
-  - cd test
-  - lcov --directory . --zerocounters
-  - cd ../
 
 script:
   - cd test
   - ./build.sh
-  - ./test
   - cd ../
 
 after_script:
-  - cd test
-  - lcov --directory . --capture --output-file coverage.info # capture coverage info
-  - lcov --remove coverage.info '/usr/*' '/test/*' --output-file coverage.info # filter out system and test code
-  - lcov --list coverage.info # debug before upload
-  - coveralls-lcov --repo-token 'yoK0wIjg3zeJ5fTVQdZr1fyG4fXltkZ7a' coverage.info # uploads to coveralls
+  - cd test/build/
+  - coveralls-lcov --repo-token 'yoK0wIjg3zeJ5fTVQdZr1fyG4fXltkZ7a' tuvieja.info # uploads to coveralls
 
 notifications:
   email: false

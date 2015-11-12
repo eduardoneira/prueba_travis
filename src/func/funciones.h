@@ -6,3 +6,7 @@ bool imprimirCosas(std::string texto){
   std::cout << texto << std::endl;
   return true;
 }
+
+bool chileno(){
+  return true;
+}
